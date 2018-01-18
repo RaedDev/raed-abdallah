@@ -28,7 +28,7 @@ app.get('*', (req, res) => {
 
 var httpServer = http.createServer((req: any, res: http.ServerResponse) => {
     if(credentials) {
-        res.writeHead(302, 'https://' + req.headers.host + req.url);
+        res.writeHead(302, { location: 'https://' + req.headers.host + req.url });
         res.end();
         return;
     }
