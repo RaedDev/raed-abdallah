@@ -26,7 +26,7 @@ if(credentials)
 {
     var httpsServer = https.createServer(credentials, app);
     httpsServer.listen(443, () => {
-        console.log(`https server running on port ${httpServer.address().port}`);
+        console.log(`https server running on port ${httpsServer.address().port}`);
     });
 }
 
