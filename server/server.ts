@@ -26,9 +26,10 @@ app.get('*', (req, res) => {
     }
 });
 
-var httpServer = http.createServer((req: any, res: any) => {
+var httpServer = http.createServer((req: any, res: http.ServerResponse) => {
     if(credentials) {
-        res.redirect('https://' + req.headers.host + req.url);
+        res.writeHead(302, 'https://' + req.headers.host + req.url);
+        res.end();
         return;
     }
     app(req, res);
