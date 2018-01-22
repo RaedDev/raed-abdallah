@@ -7,7 +7,14 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Track",
+            "url": "http://track.localhost",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Main",
             "url": "http://localhost",
             "webRoot": "${workspaceFolder}"
         }

@@ -1,12 +1,15 @@
-// haha
 import * as express from 'express';
+import * as vhost from 'vhost';
+import * as https from 'https';
 import * as http from 'http';
 import * as fs from 'fs';
-import * as https from 'https';
-import { ServerResponse } from 'http';
+import { trackApp } from './track/track';
+import { mainApp } from './main/main';
+import { notesApp } from './notes/notes'
 
 var app = express();
 
+//=========================== SSL certificates ====================================
 var credentials;
 try{
     var privateKey = fs.readFileSync('/etc/letsencrypt/live/raed-abdallah.com/privkey.pem', 'utf8');
@@ -14,19 +17,20 @@ try{
     
     credentials = { key: privateKey, cert: certificate };
 }catch(e){}
+//=================================================================================
 
-app.get('*', (req, res) => {
-    if(req.subdomains.find(s => s === 'eureka')) {
-        res.send('you are in eureka subdomain');        
-    } else if(req.subdomains.find(s => s === 'track')) {
-        res.send('you are in track subdomain');        
-    } else if(req.subdomains.find(s => s === 'elshelle')) {
-        res.send('you are in elshelle subdomain');        
-    } else {
-        res.send("welcome to raed abdallah's website");
-    }
-});
+// ======================================= Server setup ===================================
+// var domain = 'localhost';
+var domain = 'raed-abdallah.com';
 
+app.use(vhost(`${domain}`, mainApp));
+app.use(vhost(`www.${domain}`, mainApp));
+app.use(vhost(`track.${domain}`, trackApp));
+app.use(vhost(`notes.${domain}`, notesApp));
+
+
+
+//===================== Creating server and forwarding to https ============================
 var httpServer = http.createServer((req: any, res: http.ServerResponse) => {
     if(credentials) {
         res.writeHead(302, { location: 'https://' + req.headers.host + req.url });
