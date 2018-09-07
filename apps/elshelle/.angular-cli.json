@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "main"
+    "name": "elshelle"
   },
   "apps": [
     {
@@ -18,7 +18,6 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "serviceWorker": true,
       "styles": [
         "styles.css"
       ],
@@ -56,28 +55,6 @@
   },
   "defaults": {
     "styleExt": "css",
-    "class": {
-      "spec": false
-    },
-    "component": {
-      "spec": false,
-      "inlineStyle": true,
-      "inlineTemplate": true
-    },
-    "directive": {
-      "spec": false
-    },
-    "guard": {
-      "spec": false
-    },
-    "module": {
-      "spec": false
-    },
-    "pipe": {
-      "spec": false
-    },
-    "service": {
-      "spec": false
-    }
+    "component": {}
   }
 }

@@ -20,21 +20,20 @@ try{
 //=================================================================================
 
 // ======================================= Server setup ===================================
-// var domain = 'localhost';
-var domain = 'raed-abdallah.com';
+var domain = 'localhost';
+//var domain = 'raed-abdallah.com';
 
 app.use(vhost(`${domain}`, mainApp));
 app.use(vhost(`www.${domain}`, mainApp));
 app.use(vhost(`track.${domain}`, trackApp));
 app.use(vhost(`notes.${domain}`, notesApp));
 
-
-
 //===================== Creating server and forwarding to https ============================
-var httpServer = http.createServer((req: any, res: http.ServerResponse) => {
+var httpServer = http.createServer((req: http.ServerRequest, res: http.ServerResponse) => {
     if(credentials) {
-        res.writeHead(302, { location: 'https://' + req.headers.host + req.url });
+        res.writeHead(301, { location: 'https://' + req.headers.host + req.url });
         res.end();
+        
         return;
     }
     app(req, res);
