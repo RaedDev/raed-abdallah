@@ -25,8 +25,8 @@ var domain = 'localhost';
 
 app.use(vhost(`${domain}`, mainApp));
 app.use(vhost(`www.${domain}`, mainApp));
-app.use(vhost(`track.${domain}`, trackApp));
-app.use(vhost(`notes.${domain}`, notesApp));
+//app.use(vhost(`track.${domain}`, trackApp));
+//app.use(vhost(`notes.${domain}`, notesApp));
 
 //===================== Creating server and forwarding to https ============================
 var httpServer = http.createServer((req: http.ServerRequest, res: http.ServerResponse) => {
