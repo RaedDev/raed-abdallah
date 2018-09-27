@@ -12,8 +12,8 @@ var app = express();
 //=========================== SSL certificates ====================================
 var credentials;
 try{
-    var privateKey = fs.readFileSync('/etc/letsencrypt/live/raed-abdallah.com/privkey.pem', 'utf8');
-    var certificate = fs.readFileSync('/etc/letsencrypt/live/raed-abdallah.com/fullchain.pem', 'utf8');
+    var privateKey = fs.readFileSync('/etc/letsencrypt/live/www.raed-abdallah.com/privkey.pem', 'utf8');
+    var certificate = fs.readFileSync('/etc/letsencrypt/live/www.raed-abdallah.com/fullchain.pem', 'utf8');
     
     credentials = { key: privateKey, cert: certificate };
 }catch(e){}
